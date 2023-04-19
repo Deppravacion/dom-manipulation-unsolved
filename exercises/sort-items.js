@@ -12,8 +12,7 @@
  */
 
 // Your code goes here...
-
-
+const allItems = document.querySelectorAll('.item')
 
 /**
  * @task
@@ -23,8 +22,7 @@
  */
 
 // Your code goes here...
-
-
+const sortBtn = document.querySelectorAll('.sortBtn')
 
 /**
  * @task
@@ -39,6 +37,31 @@
 
 // Your code goes here...
 
+const sortData = (dir) => {
+  const container = document.getElementById('main')
+  const allItemsArray = Array.from(allItems)  
+  console.log(`sortData has begun`);
+  const ascCB = (a, b) => {
+    if (a.id > b.id) return 1
+    if (a.id < b.id) return -1
+    return 0
+  }
+  const descCB = (a, b) => {
+    if (b.id > a.id) return 1
+    if (b.id < a.id) return -1
+    return 0
+  }
+  if (dir == 'asc' ) {
+    allItemsArray.sort(ascCB)
+  }
+  if (dir == 'desc' ) {
+    allItemsArray.sort(descCB)
+  }
+  allItemsArray.forEach(item => {
+    container.append(item)
+  })
+}
+
 
 
 /**
@@ -50,5 +73,9 @@
  */
 
 // Your code goes here...
-
-
+  sortBtn.forEach(item => {
+    item.addEventListener('click', (e) => {
+      console.log(e.target.dataset.sortdir);
+      sortData(e.target.dataset.sortdir)
+    })
+  })
