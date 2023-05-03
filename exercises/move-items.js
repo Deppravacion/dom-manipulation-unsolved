@@ -50,22 +50,16 @@ const favs = document.querySelector('#favs')
 
 // Your code goes here
 const updateCollections = (id, direction) => {
-  
-
-  if (direction == 'toFavs' ) {
-    allItems.forEach(item => {
-      const childElm = document.querySelector('.fa-solid')
-      if (item.id == id) {
-        console.log(item.classList);
-        console.log(item.children[0].classList.remove('fa-heart-circle-plus'));
-        console.log(item);
-        // item.classList.remove('fa-heart-circle-plus')
-        // item.classList.add('fa-heart-crack')
-      }
- 
-    })
+  const item = document.getElementById(id)  
+  if (direction != 'toFavs' ) {
+    main.appendChild(item)
+    item.firstElementChild.classList.add('fa-heart-circle-plus')
+    item.firstElementChild.classList.remove('fa-heart-crack')
+  } else {
+    favs.appendChild(item)
+    item.firstElementChild.classList.remove('fa-heart-circle-plus')
+    item.firstElementChild.classList.add('fa-heart-crack')
   }
-
 }
 
 
@@ -89,7 +83,10 @@ const updateCollections = (id, direction) => {
 allItems.forEach(item => {
   item.addEventListener('click', (e) => {
     console.log(e.target.parentNode.id);
-    console.log(e.target.id);
-    updateCollections(e.target.id, 'toFavs')
+    const elm = document.getElementById(item.id)
+    console.log(elm);
+    const parent = elm.parentElement.id
+    const direction = parent === 'main' ? 'toFavs' : 'toMain'
+    updateCollections(item.id, direction)
   })
 })
