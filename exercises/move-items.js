@@ -12,7 +12,7 @@
  */
 
 // Your code goes here...
-
+const allItems = document.querySelectorAll('.item')
 
 
 /**
@@ -23,6 +23,8 @@
  * */
 
 // Your code goes here
+const main = document.querySelector('#main')
+
 
 
 
@@ -31,10 +33,10 @@
  * Select the favorites container by id of "favs"
  * Store it in the favs constant
  * Example: const favs = <Your code>;
- */
+*/
 
 // Your code goes here
-
+const favs = document.querySelector('#favs')
 
 
 /**
@@ -47,6 +49,24 @@
  */
 
 // Your code goes here
+const updateCollections = (id, direction) => {
+  
+
+  if (direction == 'toFavs' ) {
+    allItems.forEach(item => {
+      const childElm = document.querySelector('.fa-solid')
+      if (item.id == id) {
+        console.log(item.classList);
+        console.log(item.children[0].classList.remove('fa-heart-circle-plus'));
+        console.log(item);
+        // item.classList.remove('fa-heart-circle-plus')
+        // item.classList.add('fa-heart-crack')
+      }
+ 
+    })
+  }
+
+}
 
 
 
@@ -66,4 +86,10 @@
 
 // Your code goes here...
 
-
+allItems.forEach(item => {
+  item.addEventListener('click', (e) => {
+    console.log(e.target.parentNode.id);
+    console.log(e.target.id);
+    updateCollections(e.target.id, 'toFavs')
+  })
+})

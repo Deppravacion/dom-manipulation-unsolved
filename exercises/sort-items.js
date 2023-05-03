@@ -39,27 +39,19 @@ const sortBtn = document.querySelectorAll('.sortBtn')
 
 const sortData = (dir) => {
   const container = document.getElementById('main')
-  const allItemsArray = Array.from(allItems)  
-  console.log(`sortData has begun`);
-  const ascCB = (a, b) => {
-    if (a.id > b.id) return 1
-    if (a.id < b.id) return -1
-    return 0
-  }
-  const descCB = (a, b) => {
-    if (b.id > a.id) return 1
-    if (b.id < a.id) return -1
-    return 0
-  }
+  // console.log(`sortData has begun`);
+  let sorted
+
   if (dir == 'asc' ) {
-    allItemsArray.sort(ascCB)
+    sorted = Array.from(allItems).sort((a, b) => a.id - b.id)
   }
-  if (dir == 'desc' ) {
-    allItemsArray.sort(descCB)
+  if (dir == 'desc') {
+    sorted = Array.from(allItems).sort((a, b) => b.id - a.id)
   }
-  allItemsArray.forEach(item => {
-    container.append(item)
-  })
+
+  container.innerHTML = ''
+  sorted.forEach(elm => container.append(elm))
+ 
 }
 
 
@@ -75,7 +67,7 @@ const sortData = (dir) => {
 // Your code goes here...
   sortBtn.forEach(item => {
     item.addEventListener('click', (e) => {
-      console.log(e.target.dataset.sortdir);
+      // console.log(e.target.dataset.sortdir);
       sortData(e.target.dataset.sortdir)
     })
   })

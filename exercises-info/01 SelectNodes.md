@@ -136,3 +136,4 @@ newArr.forEach((item) => {
   * [querySelectorAll](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll)
 * Getting a Live HTML Collection
   * [getElementsByClassName](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementsByClassName)
+
