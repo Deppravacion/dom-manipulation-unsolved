@@ -38,3 +38,57 @@
  */
 
 // Your code goes here...
+
+const storageFavsRAW = localStorage.getItem('favorites')
+const parsedData = JSON.parse(storageFavsRAW)
+const data = parsedData ?? { items: [] }
+
+
+
+
+// * * Create a function that sets the background to be red for the item with an id listed in favorites LS
+const setRedBackgroundColorFromLS = () => {
+  if (storageFavsRAW) {
+    parsedData.items.forEach((elm) => {
+      const reloadedBox = document.getElementById(elm) 
+      reloadedBox.style.backgroundColor = 'red'
+      reloadedBox.dataset.fav = 'true'
+    })
+    return data.items = parsedData.items
+  }
+  return data 
+}
+setRedBackgroundColorFromLS()
+
+// * * Create a function that adds an id to favorites LS by id passed as an argument
+const addIdToFavoritesLS = (numb) => {  
+  data.items.push(numb)
+  localStorage.setItem('favorites', JSON.stringify(data))
+  return data
+}
+
+// * * Create a function that deletes an id from favorites LS by id passed as an argument
+const removeIdFromFavoritesLS = (numb) => {
+  const updatedData = data.items.filter(elm => elm != numb)
+  data.items = updatedData
+  localStorage.setItem('favorites', JSON.stringify(data))
+  return data
+}
+
+// * * Create a callback function that updates the element background color and does the
+const callEmBack = (e) => {
+  const item = e.target
+  if (item.id) {    
+    if (item.dataset.fav == 'true') {
+      item.style.backgroundColor = 'white'
+      item.dataset.fav = false
+      removeIdFromFavoritesLS(item.id)
+    } else if (item.dataset.fav == 'false') {
+      item.style.backgroundColor = 'red'
+      item.dataset.fav = true
+      addIdToFavoritesLS(item.id)
+    }
+  }
+  return item
+}
+document.querySelector('.cardsContainer').addEventListener('click', callEmBack)
