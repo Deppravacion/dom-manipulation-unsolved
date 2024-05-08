@@ -58,7 +58,7 @@ const setRedBackgroundColorFromLS = () => {
   }
   return data 
 }
-setRedBackgroundColorFromLS()
+
 
 // * * Create a function that adds an id to favorites LS by id passed as an argument
 const addIdToFavoritesLS = (numb) => {  
@@ -91,4 +91,5 @@ const callEmBack = (e) => {
   }
   return item
 }
+setRedBackgroundColorFromLS()
 document.querySelector('.cardsContainer').addEventListener('click', callEmBack)
